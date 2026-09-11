@@ -110,14 +110,14 @@ export class WhatsAppAccountInstance {
       fs.mkdirSync(this.sessionDir, { recursive: true });
     }
 
-    // Auto-reconnect if creds exist
+    // Auto-reconnect if creds exist (delayed so server port binds and health checks pass first)
     const credsFile = path.join(this.sessionDir, "creds.json");
     if (fs.existsSync(credsFile)) {
       setTimeout(() => {
         this.connect().catch((e) =>
           console.warn(`[${this.name}] Auto-reconnect notice:`, e?.message)
         );
-      }, 1500);
+      }, 5000);
     }
   }
 

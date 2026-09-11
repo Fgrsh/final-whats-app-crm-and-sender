@@ -41,9 +41,17 @@ class CRMService {
       fs.mkdirSync(this.dataDir, { recursive: true });
     }
 
-    this.precomputeLidMappings();
     this.loadData();
-    this.syncChatsFromSession();
+
+    // Defer heavy session scanning and LID mapping to background so server can bind port 3000 immediately
+    setTimeout(() => {
+      try {
+        this.precomputeLidMappings();
+        this.syncChatsFromSession();
+      } catch (e) {
+        console.error("Background syncChatsFromSession error:", e);
+      }
+    }, 4000);
   }
 
   public precomputeLidMappings() {

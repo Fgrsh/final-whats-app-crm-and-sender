@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import dotenv from "dotenv";
 import { whatsappManager } from "./server/whatsappManager.ts";
 import { campaignQueue } from "./server/campaignQueue.ts";
@@ -16,14 +17,20 @@ async function startServer() {
   const PORT = 3000;
 
   // Determine production vs development:
-  // Running the compiled bundle (dist/server.cjs) or explicitly NODE_ENV=production means production
+  // Running compiled bundle (dist/server.cjs), NODE_ENV=production, or having built dist/index.html means production
   const isProduction =
     process.env.NODE_ENV === "production" ||
-    (typeof __filename !== "undefined" && (__filename.endsWith(".cjs") || __filename.includes("dist")));
+    (typeof __filename !== "undefined" && (__filename.endsWith(".cjs") || __filename.includes("dist"))) ||
+    fs.existsSync(path.join(process.cwd(), "dist", "index.html"));
 
   if (isProduction) {
     process.env.NODE_ENV = "production";
   }
+
+  // Bind to port 3000 immediately so Cloud Run TCP startup probes succeed instantly
+  const server = app.listen(PORT, "0.0.0.0", () => {
+    console.log(`WhatsApp AI Bulk Sender server listening on http://0.0.0.0:${PORT} [mode: ${isProduction ? "production" : "development"}]`);
+  });
 
   // Enable CORS for all incoming requests (crucial for iframe preview and cross-origin modules)
   app.use((req, res, next) => {
@@ -1240,10 +1247,6 @@ async function startServer() {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
-
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`WhatsApp AI Bulk Sender server listening on http://0.0.0.0:${PORT}`);
-  });
 }
 
 startServer().catch((err) => {
