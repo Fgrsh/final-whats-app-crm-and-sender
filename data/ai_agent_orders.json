@@ -1,0 +1,54 @@
+[
+  {
+    "id": "ORD-698882",
+    "phone": "201009305802",
+    "customerName": "Shereif",
+    "items": [
+      {
+        "productName": "Mozzarella Cheese — 100% Block (جبنة موزاريلا بلوك 100%)",
+        "quantity": 1,
+        "unitPrice": 570,
+        "subtotal": 570
+      }
+    ],
+    "totalAmount": 620,
+    "shippingFee": 50,
+    "isRetail": true,
+    "currency": "EGP",
+    "shippingAddress": "سيتم التأكيد عبر الهاتف",
+    "locationUrl": "",
+    "paymentMethod": "الدفع عند الاستلام",
+    "notes": "",
+    "status": "draft",
+    "createdAt": "2026-09-10T22:34:58.882Z",
+    "updatedAt": "2026-09-10T22:34:58.882Z"
+  },
+  {
+    "id": "ORD-594232",
+    "phone": "201022200882",
+    "customerName": "Yaser Abo Ammar",
+    "items": [
+      {
+        "productName": "Mozzarella Cheese — 50% (جبنة موزاريلا 50%)",
+        "quantity": 1,
+        "unitPrice": 1550,
+        "subtotal": 1550
+      }
+    ],
+    "totalAmount": 1550,
+    "shippingFee": 0,
+    "isRetail": false,
+    "currency": "EGP",
+    "shippingAddress": "سيتم التأكيد عبر الهاتف (📍 اللوكيشن: https://maps.google.com/?q=29.8956784,31.3004901)",
+    "locationUrl": "https://maps.google.com/?q=29.8956784,31.3004901",
+    "locationCoordinates": {
+      "latitude": 29.8956784,
+      "longitude": 31.3004901
+    },
+    "paymentMethod": "الدفع عند الاستلام",
+    "notes": "تم تعديل الطلب من موزاريلا 100% إلى كرتونة موزاريلا 50% بناءً على طلب العميل.",
+    "status": "confirmed",
+    "createdAt": "2026-09-10T21:59:54.232Z",
+    "updatedAt": "2026-09-10T22:03:02.691Z"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "name": "WhatsApp AI Bulk Sender",
+  "description": "Smart WhatsApp campaign manager with AI message personalization, multi-device QR pairing, Excel/CSV import, and anti-ban rate limiting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
